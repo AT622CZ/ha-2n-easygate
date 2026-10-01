@@ -1,5 +1,10 @@
 # 2N EasyGate (GSM brána) → Home Assistant
 
+> **Stav:** ve vývoji. Ověřeno na jedné bráně 2N EasyGate (Siemens MC55i, firmware 01.003) s Home Assistant 2026.9.
+> **Status:** work in progress, tested on a single 2N EasyGate unit. Documentation is in Czech for now.
+
+**Instalace přes HACS:** HACS → ⋮ → Vlastní repozitáře → `https://github.com/AT622CZ/ha-2n-easygate`, typ *Integrace*.
+
 Integrace `easygate` komunikuje AT příkazy s modulem Siemens MC39i/MC55 uvnitř
 brány. Nastavení modulu nemění: SMS jdou v PDU režimu (umí i češtinu) a příkazy,
 které manuál zakazuje (`AT+IPR=`, `AT+CFUN=`, `AT+CSCS=`, …), integrace odmítne.
