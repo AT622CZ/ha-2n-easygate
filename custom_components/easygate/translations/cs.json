@@ -1,0 +1,75 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "2N EasyGate",
+        "description": "Sériový port GSM brány (rovný kabel 1:1, řízení toku RTS/CTS).",
+        "data": {
+          "port": "Sériový port",
+          "baudrate": "Rychlost (brána ji rozpozná sama)",
+          "rtscts": "Hardwarové řízení toku RTS/CTS"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Brána na tomto portu neodpovídá.",
+      "busy": "Brána blokuje port (není registrovaná v síti GSM nebo se právě sestavuje hovor). Zkuste to za chvíli.",
+      "unknown": "Neočekávaná chyba."
+    },
+    "abort": {
+      "already_configured": "Tento port je už nastavený."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Nastavení EasyGate",
+        "data": {
+          "recipients": "Výchozí příjemci SMS (oddělení čárkou, např. +420777123456)",
+          "daily_limit": "Denní limit SMS (0 = jen vynucené odeslání)",
+          "max_parts": "Nejvíce částí jedné dlouhé SMS",
+          "strip_diacritics": "Odstranit diakritiku (160 místo 70 znaků na SMS)",
+          "scan_interval": "Interval dotazování",
+          "missed_calls": "Číst zmeškané hovory z modulu",
+          "delete_sms": "Po přečtení SMS archivovat do /config/easygate_sms.txt a smazat z brány",
+          "command_numbers": "Čísla, ze kterých SMS příkazy ovládají HA (událost easygate_command)",
+          "command_pin": "PIN na začátku SMS příkazu (doporučeno, např. 4711 TOPENI ZAP)"
+        }
+      }
+    }
+  },
+  "services": {
+    "send_sms": {
+      "name": "Odeslat SMS",
+      "description": "Odešle SMS přes bránu s ohledem na denní limit.",
+      "fields": {
+        "message": {
+          "name": "Zpráva",
+          "description": "Text SMS."
+        },
+        "number": {
+          "name": "Číslo",
+          "description": "Příjemce; když je prázdné, použijí se výchozí příjemci z nastavení."
+        },
+        "force": {
+          "name": "Ignorovat denní limit",
+          "description": "Odeslat i po dosažení denního limitu."
+        }
+      }
+    },
+    "at_command": {
+      "name": "AT příkaz",
+      "description": "Pošle GSM modulu surový AT příkaz (pro ladění).",
+      "fields": {
+        "command": {
+          "name": "Příkaz",
+          "description": "Např. AT+CSQ"
+        },
+        "timeout": {
+          "name": "Časový limit",
+          "description": "Kolik sekund čekat na odpověď."
+        }
+      }
+    }
+  }
+}

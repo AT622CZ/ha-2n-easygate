@@ -1,0 +1,75 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "2N EasyGate",
+        "description": "Serial port of the GSM gateway (straight 1:1 cable, RTS/CTS flow control).",
+        "data": {
+          "port": "Serial port",
+          "baudrate": "Baud rate (the gateway detects it automatically)",
+          "rtscts": "RTS/CTS hardware flow control"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "The gateway does not answer on this port.",
+      "busy": "The gateway blocks the port (not registered in the GSM network, or a call is being set up). Try again later.",
+      "unknown": "Unexpected error."
+    },
+    "abort": {
+      "already_configured": "This port is already configured."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "EasyGate options",
+        "data": {
+          "recipients": "Default SMS recipients (comma separated, e.g. +420777123456)",
+          "daily_limit": "Daily SMS limit (0 = only forced sending)",
+          "max_parts": "Maximum parts of one long SMS",
+          "strip_diacritics": "Remove diacritics (160 instead of 70 characters per SMS)",
+          "scan_interval": "Polling interval",
+          "missed_calls": "Read missed calls from the module",
+          "delete_sms": "Archive received SMS to /config/easygate_sms.txt and delete them from the gateway",
+          "command_numbers": "Numbers allowed to send SMS commands (event easygate_command)",
+          "command_pin": "PIN at the start of an SMS command (recommended, e.g. 4711 HEATING ON)"
+        }
+      }
+    }
+  },
+  "services": {
+    "send_sms": {
+      "name": "Send SMS",
+      "description": "Sends an SMS through the gateway, respecting the daily limit.",
+      "fields": {
+        "message": {
+          "name": "Message",
+          "description": "Text of the SMS."
+        },
+        "number": {
+          "name": "Number",
+          "description": "Recipient(s); default recipients from the options when empty."
+        },
+        "force": {
+          "name": "Ignore daily limit",
+          "description": "Send even if the daily limit is reached."
+        }
+      }
+    },
+    "at_command": {
+      "name": "AT command",
+      "description": "Sends a raw AT command to the GSM module (for debugging).",
+      "fields": {
+        "command": {
+          "name": "Command",
+          "description": "E.g. AT+CSQ"
+        },
+        "timeout": {
+          "name": "Timeout",
+          "description": "Seconds to wait for the answer."
+        }
+      }
+    }
+  }
+}

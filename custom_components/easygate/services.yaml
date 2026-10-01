@@ -1,0 +1,30 @@
+send_sms:
+  fields:
+    message:
+      required: true
+      example: "Vypadek internetu doma"
+      selector:
+        text:
+          multiline: true
+    number:
+      example: "+420777123456"
+      selector:
+        text:
+    force:
+      default: false
+      selector:
+        boolean:
+at_command:
+  fields:
+    command:
+      required: true
+      example: "AT+CSQ"
+      selector:
+        text:
+    timeout:
+      default: 10
+      selector:
+        number:
+          min: 1
+          max: 60
+          unit_of_measurement: s

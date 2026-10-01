@@ -1,0 +1,17 @@
+{
+  "domain": "easygate",
+  "name": "2N EasyGate",
+  "codeowners": [
+    "@AT622CZ"
+  ],
+  "config_flow": true,
+  "dependencies": [],
+  "documentation": "https://github.com/AT622CZ/ha-2n-easygate",
+  "integration_type": "device",
+  "iot_class": "local_polling",
+  "issue_tracker": "https://github.com/AT622CZ/ha-2n-easygate/issues",
+  "requirements": [
+    "pyserial>=3.5"
+  ],
+  "version": "0.1.0"
+}
